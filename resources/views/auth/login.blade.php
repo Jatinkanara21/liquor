@@ -1,18 +1,20 @@
 @extends('layouts.app')
 
-@section('title', 'Login | Elite Liquor House')
+@section('title', 'Login | ELM GROVE LIQUOR')
 
 @section('content')
-<div class="bg-black-900 min-h-screen py-20 flex items-center justify-center">
+<div class="bg-modern-white min-h-screen py-20 flex items-center justify-center">
     <div class="container mx-auto px-6">
-        <div class="max-w-md mx-auto glass p-10 rounded-sm relative overflow-hidden">
+        <div class="max-w-md mx-auto bg-white p-10 rounded-sm relative overflow-hidden shadow-2xl border border-modern-gold/10">
              <!-- Decorative Glow -->
-             <div class="absolute top-0 right-0 -mr-10 -mt-10 w-40 h-40 bg-gold-500/10 rounded-full blur-3xl"></div>
-             <div class="absolute bottom-0 left-0 -ml-10 -mb-10 w-40 h-40 bg-gold-500/10 rounded-full blur-3xl"></div>
+             <div class="absolute inset-0 z-0">
+                <img src="{{ asset('images/defaults/store_interior.png') }}" alt="Background" class="w-full h-full object-cover opacity-10">
+                <div class="absolute inset-0 bg-gradient-to-br from-modern-white via-modern-white/80 to-modern-tan/30"></div>
+            </div>
 
             <div class="text-center mb-10 relative z-10">
-                <h2 class="text-3xl font-heading text-white mb-2">Welcome Back</h2>
-                <p class="text-gray-400">Access your premium collection.</p>
+                <h2 class="text-3xl font-heading text-modern-charcoal mb-2">Welcome Back</h2>
+                <p class="text-modern-charcoal/60 text-sm italic uppercase tracking-widest">Access your private reserve.</p>
             </div>
 
             @if($errors->any())
@@ -29,31 +31,18 @@
                 @csrf
                 
                 <div class="mb-6">
-                    <label for="email" class="block text-gray-400 text-sm mb-2 uppercase tracking-wide">Email Address</label>
-                    <input type="email" name="email" id="email" class="w-full bg-black-950 border border-white/10 text-white px-4 py-3 rounded-sm focus:border-gold-500 focus:outline-none focus:ring-1 focus:ring-gold-500/20 transition-all" value="{{ old('email') }}" required autofocus>
+                    <label for="email" class="block text-modern-charcoal/60 text-[10px] mb-2 uppercase tracking-[0.2em] font-bold">Email Address</label>
+                    <input type="email" name="email" id="email" class="w-full bg-white border border-modern-charcoal/10 text-modern-charcoal px-4 py-3 rounded-sm focus:border-modern-gold focus:outline-none transition-all" value="{{ old('email') }}" required autofocus>
                 </div>
 
                 <div class="mb-8">
-                    <label for="password" class="block text-gray-400 text-sm mb-2 uppercase tracking-wide flex justify-between">
-                        <span>Password</span>
-                        {{-- <a href="#" class="text-gold-500 hover:text-white text-xs lowercase italic">Forgot Password?</a> --}}
-                    </label>
-                    <input type="password" name="password" id="password" class="w-full bg-black-950 border border-white/10 text-white px-4 py-3 rounded-sm focus:border-gold-500 focus:outline-none focus:ring-1 focus:ring-gold-500/20 transition-all" required>
+                    <label for="password" class="block text-modern-charcoal/60 text-[10px] mb-2 uppercase tracking-[0.2em] font-bold">Password</label>
+                    <input type="password" name="password" id="password" class="w-full bg-white border border-modern-charcoal/10 text-modern-charcoal px-4 py-3 rounded-sm focus:border-modern-gold focus:outline-none transition-all" required>
                 </div>
 
-                <div class="flex items-center mb-8">
-                    <input type="checkbox" id="remember" name="remember" class="w-4 h-4 bg-black-950 border-gray-600 rounded focus:ring-gold-500 text-gold-600">
-                    <label for="remember" class="ml-2 text-sm text-gray-400">Remember me</label>
+                <div class="mb-6">
+                    <button type="submit" class="w-full bg-modern-charcoal text-modern-beige py-4 rounded-sm hover:bg-modern-gold hover:text-modern-beige transition-all uppercase font-bold tracking-[0.3em] text-[10px] shadow-2xl">Login to Reserve</button>
                 </div>
-
-                <button type="submit" class="w-full bg-gold-600 text-white font-semibold uppercase tracking-widest py-4 hover:bg-gold-500 transition-all shadow-[0_4px_14px_0_rgba(184,134,11,0.39)] hover:shadow-[0_6px_20px_rgba(184,134,11,0.23)] mb-6">
-                    Sign In
-                </button>
-
-                <p class="text-center text-gray-400 text-sm">
-                    Don't have an account? 
-                    <a href="{{ route('register') }}" class="text-gold-500 hover:text-white font-semibold transition-colors">Create one</a>
-                </p>
             </form>
         </div>
     </div>

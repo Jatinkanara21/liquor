@@ -3,24 +3,50 @@
 @section('title', 'About Us - Elm Grove Liquor')
 
 @section('content')
-<div class="container mt-3">
-    <h1 class="mb-2 text-center">About Elm Grove Liquor</h1>
-    <div style="max-width: 800px; margin: 0 auto; line-height: 1.8;">
-        <p class="mb-2">
-            Welcome to <strong>Elm Grove Liquor</strong>, Hazelwood's premier destination for fine spirits, craft beers, and exceptional wines. Established with a passion for quality and community, we have been serving the St. Louis area for over a decade.
-        </p>
-        <p class="mb-2">
-            Our mission is simple: to provide an unparalleled selection of beverages coupled with knowledgeable, friendly service. Whether you are looking for a rare bourbon, a local craft brew, or the perfect wine for your dinner party, our staff is here to help you find exactly what you need.
-        </p>
-        <div style="text-align: center; margin: 40px 0;">
-            <img src="https://placehold.co/800x400?text=Store+Interior" alt="Store Interior" style="max-width: 100%; border-radius: 8px;">
+<section class="bg-modern-beige min-h-screen py-20">
+    <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-5xl md:text-6xl font-heading text-modern-charcoal mb-12 text-center uppercase tracking-widest leading-tight">Our <span class="gold-gradient-text">Heritage</span></h1>
+            
+            <div class="glass-card p-12 mb-16 relative overflow-hidden border border-modern-gold/10">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-modern-gold/5 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+                <div class="absolute bottom-0 left-0 w-32 h-32 bg-modern-gold/5 rounded-full -ml-16 -mb-16 blur-2xl"></div>
+                <div class="relative z-10">
+                    <p class="text-xl text-modern-gold font-heading italic mb-8 border-l-4 border-modern-gold pl-6 leading-relaxed">
+                        "Elegance is not about being noticed, it's about being remembered."
+                    </p>
+                    <div class="space-y-6 text-modern-text-muted leading-relaxed text-lg">
+                        <p>
+                            Welcome to <strong class="text-modern-charcoal font-semibold">Elm Grove Liquor</strong>, Hazelwood's premier destination for fine spirits, craft beers, and exceptional wines. Established with a passion for quality and community, we have been serving the St. Louis area for over a decade.
+                        </p>
+                        <p>
+                            Our mission is simple: to provide an unparalleled selection of beverages coupled with knowledgeable, friendly service. Whether you are looking for a rare bourbon, a local craft brew, or the perfect wine for your dinner party, our staff is here to help you find exactly what you need.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16">
+                        <div class="glass-card p-10 border border-modern-gold/10">
+                            <h3 class="text-2xl font-heading text-modern-charcoal mb-6 uppercase tracking-widest">Our Mission</h3>
+                            <p class="text-modern-text-muted leading-relaxed">To curate the world's most exceptional spirits, providing our clientele with an unmatched selection of rare vintages and premium labels.</p>
+                        </div>
+                        <div class="glass-card p-10 border border-modern-gold/10">
+                            <h3 class="text-2xl font-heading text-modern-charcoal mb-6 uppercase tracking-widest">The Experience</h3>
+                            <p class="text-modern-text-muted leading-relaxed">Beyond a mere store, we offer a journey through history, craftsmanship, and the art of fine drinking.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Section -->
+            <div class="relative w-full mt-16">
+                <div class="relative z-10 rounded-sm overflow-hidden shadow-2xl glass-card p-3 border border-modern-gold/20">
+                    <img src="{{ asset('images/defaults/store_interior.png') }}" alt="Elm Grove Store Interior" class="w-full h-full object-cover rounded-sm">
+                </div>
+                <!-- Decorative Elements -->
+                <div class="absolute -top-10 -right-10 w-64 h-64 bg-modern-gold/10 blur-3xl rounded-full"></div>
+                <div class="absolute -bottom-10 -left-10 w-48 h-48 bg-modern-charcoal/5 blur-3xl rounded-full"></div>
+            </div>
         </div>
-        <h3 class="mb-1">Why Choose Us?</h3>
-        <ul style="list-style-type: disc; padding-left: 20px;">
-            <li><strong>Expert Selection:</strong> Hand-picked items from around the globe.</li>
-            <li><strong>Local Focus:</strong> We proudly support Missouri breweries and distilleries.</li>
-            <li><strong>Convenience:</strong> Easy online ordering with pickup and delivery options.</li>
-        </ul>
     </div>
-</div>
+</section>
 @endsection

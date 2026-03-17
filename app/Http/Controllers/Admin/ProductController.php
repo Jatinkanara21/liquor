@@ -50,7 +50,8 @@ class ProductController extends Controller
 
         $imagePath = null;
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('products', 'public');
+            $file = $request->file('image');
+            $imagePath = 'data:' . $file->getMimeType() . ';base64,' . base64_encode(file_get_contents($file->getRealPath()));
         }
 
         $productId = DB::table('products')->insertGetId([
@@ -68,10 +69,10 @@ class ProductController extends Controller
 
         if ($request->hasFile('gallery_images')) {
             foreach($request->file('gallery_images') as $file) {
-                $path = $file->store('products/gallery', 'public');
+                $base64Image = 'data:' . $file->getMimeType() . ';base64,' . base64_encode(file_get_contents($file->getRealPath()));
                 DB::table('product_images')->insert([
                     'product_id' => $productId,
-                    'image' => $path,
+                    'image' => $base64Image,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
@@ -131,11 +132,8 @@ class ProductController extends Controller
 
         $imagePath = $product->image;
         if ($request->hasFile('image')) {
-            // Delete old image if exists
-            if ($product->image) {
-                Storage::disk('public')->delete($product->image);
-            }
-            $imagePath = $request->file('image')->store('products', 'public');
+            $file = $request->file('image');
+            $imagePath = 'data:' . $file->getMimeType() . ';base64,' . base64_encode(file_get_contents($file->getRealPath()));
         }
 
         DB::table('products')->where('id', $id)->update([
@@ -151,21 +149,15 @@ class ProductController extends Controller
 
         if ($request->has('delete_gallery')) {
             $deleteIds = $request->input('delete_gallery');
-            $imagesToDelete = DB::table('product_images')->whereIn('id', $deleteIds)->get();
-            foreach ($imagesToDelete as $gImg) {
-                if ($gImg->image) {
-                    Storage::disk('public')->delete($gImg->image);
-                }
-            }
             DB::table('product_images')->whereIn('id', $deleteIds)->delete();
         }
 
         if ($request->hasFile('gallery_images')) {
             foreach($request->file('gallery_images') as $file) {
-                $path = $file->store('products/gallery', 'public');
+                $base64Image = 'data:' . $file->getMimeType() . ';base64,' . base64_encode(file_get_contents($file->getRealPath()));
                 DB::table('product_images')->insert([
                     'product_id' => $id,
-                    'image' => $path,
+                    'image' => $base64Image,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
@@ -183,17 +175,6 @@ class ProductController extends Controller
         $product = DB::table('products')->where('id', $id)->first();
         
         if ($product) {
-            if ($product->image) {
-                Storage::disk('public')->delete($product->image);
-            }
-            
-            $gallery_images = DB::table('product_images')->where('product_id', $id)->get();
-            foreach($gallery_images as $gImg) {
-                if ($gImg->image) {
-                    Storage::disk('public')->delete($gImg->image);
-                }
-            }
-            
             DB::table('products')->where('id', $id)->delete();
         }
 

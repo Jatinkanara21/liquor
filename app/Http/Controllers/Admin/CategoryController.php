@@ -53,7 +53,8 @@ class CategoryController extends Controller
 
         $imagePath = null;
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('categories', 'public');
+            $file = $request->file('image');
+            $imagePath = 'data:' . $file->getMimeType() . ';base64,' . base64_encode(file_get_contents($file->getRealPath()));
         }
 
         DB::table('categories')->insert([
@@ -105,10 +106,8 @@ class CategoryController extends Controller
 
         $imagePath = $category->image;
         if ($request->hasFile('image')) {
-            if ($category->image) {
-                Storage::disk('public')->delete($category->image);
-            }
-            $imagePath = $request->file('image')->store('categories', 'public');
+            $file = $request->file('image');
+            $imagePath = 'data:' . $file->getMimeType() . ';base64,' . base64_encode(file_get_contents($file->getRealPath()));
         }
 
         DB::table('categories')->where('id', $id)->update([
@@ -130,9 +129,6 @@ class CategoryController extends Controller
         $category = DB::table('categories')->where('id', $id)->first();
         
         if ($category) {
-            if ($category->image) {
-                Storage::disk('public')->delete($category->image);
-            }
             // Check constraints? Products might be orphaned or cascade delete if set up in migration
             DB::table('categories')->where('id', $id)->delete();
         }

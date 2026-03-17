@@ -9,62 +9,118 @@
     --font-heading: 'Playfair Display', serif;
     --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
 
-    --color-gold-50: #fbf7e3;
-    --color-gold-100: #f5ebb8;
-    --color-gold-200: #ebd882;
-    --color-gold-300: #deb943;
-    --color-gold-400: #d4a022;
-    --color-gold-500: #b8860b;
-    /* Primary Gold */
-    --color-gold-600: #966606;
-    --color-gold-700: #784d07;
-    --color-gold-800: #633e0d;
-    --color-gold-900: #55340f;
-    --color-gold-950: #311b03;
+    /* ============================================
+       CHARCOAL · LIGHT GRAY · COPPER PALETTE
+       Background  : #F4F4F4  (Light Gray)
+       Primary     : #2C2C2C  (Charcoal)
+       Accent Gold : #B87333  (Copper)
+       Secondary   : #444444
+       Text        : #1A1A1A
+    ============================================ */
 
-    --color-black-50: #f6f6f6;
-    --color-black-100: #e7e7e7;
-    --color-black-200: #d1d1d1;
-    --color-black-300: #b0b0b0;
-    --color-black-400: #888888;
-    --color-black-500: #6d6d6d;
-    --color-black-600: #5d5d5d;
-    --color-black-700: #4f4f4f;
-    --color-black-800: #2d2d2d;
-    /* Card Background */
-    --color-black-900: #1a1a1a;
-    /* Global Background */
-    --color-black-950: #0f0f0f;
-    /* Deepest Black */
+    /* Core brand colors */
+    --color-premium-cream:      #F4F4F4;
+    --color-premium-soft:       #EAEAEA;
+    --color-premium-white:      #FFFFFF;
+    --color-premium-gold:       #B87333;
+    --color-premium-gold-light: #D29052;
+    --color-premium-gold-dark:  #8E5624;
+
+    /* Charcoal tones for backgrounds */
+    --color-premium-black:  #2C2C2C;
+    --color-premium-brown:  #1A1A1A;
+    --color-gm-dark:        #1A1A1A;
+    --color-gm-deep:        #212121;
+    --color-gm-mid:         #444444;
+    --color-gm-light:       #666666;
+
+    /* Backward-compat mappings */
+    --color-modern-gray:       var(--color-premium-cream);
+    --color-modern-gold:       var(--color-premium-gold);
+    --color-modern-charcoal:   var(--color-gm-dark);
+    --color-modern-white:      var(--color-premium-white);
+    --color-modern-soft:       var(--color-premium-soft);
+
+    --color-whiskey-beige: var(--color-premium-cream);
+    --color-whiskey-brown: var(--color-premium-black);
+    --color-whiskey-tan:   var(--color-premium-soft);
+    --color-whiskey-gold:  var(--color-premium-gold);
+    --color-whiskey-bone:  var(--color-premium-white);
+
+    --color-luxury-cream:      var(--color-premium-cream);
+    --color-luxury-gold:       var(--color-premium-gold);
+    --color-luxury-brown:      var(--color-premium-black);
+    --color-luxury-beige:      var(--color-premium-soft);
+    --color-luxury-text:       var(--color-gm-dark);
+    --color-luxury-text-muted: rgba(26, 26, 26, 0.55);
+
+    --color-wine-white:    var(--color-premium-white);
+    --color-wine-burgundy: var(--color-premium-black);
+    --color-wine-gold:     var(--color-premium-gold);
+    --color-wine-pink:     var(--color-premium-soft);
+    --color-wine-gray:     var(--color-gm-dark);
 }
 
-/* Glassmorphism Utilities */
-@utility glass {
-    background: rgba(45, 45, 45, 0.4);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+/* ================================================
+   UTILITY CLASSES
+================================================ */
+
+@utility gold-gradient-text {
+    background: linear-gradient(135deg, #B87333 0%, #D29052 50%, #8E5624 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+@utility modern-gradient-text {
+    background: linear-gradient(135deg, #B87333 0%, #D29052 60%, #B87333 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 @utility glass-card {
-    background: linear-gradient(135deg, rgba(45, 45, 45, 0.6) 0%, rgba(20, 20, 20, 0.8) 100%);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(184, 134, 11, 0.2);
-    /* Gold border hint */
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(184, 115, 51, 0.15);
+    box-shadow: 0 12px 40px rgba(44, 44, 44, 0.08);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
+
+@utility premium-card-shadow {
+    box-shadow:
+        0 4px 6px rgba(44, 44, 44, 0.04),
+        0 20px 50px rgba(44, 44, 44, 0.12);
+}
+
+@utility bottle-shadow-modern {
+    filter: drop-shadow(0 24px 48px rgba(44, 44, 44, 0.35));
+}
+
+@utility modern-glow {
+    box-shadow: 0 0 60px rgba(184, 115, 51, 0.25);
+}
+
+@utility gold-border-shimmer {
+    border: 1px solid rgba(184, 115, 51, 0.30);
+    transition: border-color 0.4s ease;
+}
+
+/* ================================================
+   BASE STYLES
+================================================ */
 
 @layer base {
     body {
-        @apply bg-black-900 text-gray-200 font-sans antialiased;
+        @apply bg-premium-cream text-gm-dark font-sans antialiased;
     }
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        @apply font-heading text-gold-500;
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-heading text-gm-dark;
+    }
+
+    ::selection {
+        background: rgba(184, 115, 51, 0.25);
+        color: #FFFFFF;
     }
 }

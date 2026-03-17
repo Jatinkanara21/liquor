@@ -1,0 +1,70 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-heading: 'Playfair Display', serif;
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+    --color-gold-50: #fbf7e3;
+    --color-gold-100: #f5ebb8;
+    --color-gold-200: #ebd882;
+    --color-gold-300: #deb943;
+    --color-gold-400: #d4a022;
+    --color-gold-500: #b8860b;
+    /* Primary Gold */
+    --color-gold-600: #966606;
+    --color-gold-700: #784d07;
+    --color-gold-800: #633e0d;
+    --color-gold-900: #55340f;
+    --color-gold-950: #311b03;
+
+    --color-black-50: #f6f6f6;
+    --color-black-100: #e7e7e7;
+    --color-black-200: #d1d1d1;
+    --color-black-300: #b0b0b0;
+    --color-black-400: #888888;
+    --color-black-500: #6d6d6d;
+    --color-black-600: #5d5d5d;
+    --color-black-700: #4f4f4f;
+    --color-black-800: #2d2d2d;
+    /* Card Background */
+    --color-black-900: #1a1a1a;
+    /* Global Background */
+    --color-black-950: #0f0f0f;
+    /* Deepest Black */
+}
+
+/* Glassmorphism Utilities */
+@utility glass {
+    background: rgba(45, 45, 45, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@utility glass-card {
+    background: linear-gradient(135deg, rgba(45, 45, 45, 0.6) 0%, rgba(20, 20, 20, 0.8) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(184, 134, 11, 0.2);
+    /* Gold border hint */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+@layer base {
+    body {
+        @apply bg-black-900 text-gray-200 font-sans antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-heading text-gold-500;
+    }
+}
